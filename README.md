@@ -16,6 +16,9 @@ a macOS-native equivalent to Windows’ “Send To” workflow using:
 The router works best when set as the default application for PHITS-related
 file extensions.
 
+PHITS is a general-purpose Monte Carlo particle simulation code; you can read 
+more about it and how to get it at: https://phits.jaea.go.jp/
+
 ---
 
 ## Supported PHITS applications
