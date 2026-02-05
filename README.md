@@ -155,14 +155,14 @@ If the preferred editor is not installed, TextEdit is used automatically.
 
 1. Download `PHITS Router.workflow`
 2. Open it in **Automator**
-3. File → Save As…
+3. File → Convert To…
 4. Choose **Application**
 5. Save as `PHITS Router.app` (e.g. in `/Applications`)
-6. Optionally assign a custom icon
+6. Optionally assign a [custom icon](images/phits_logoA_1024x1024.png)
 7. Associate PHITS file extensions with the app
 
 ### Option B: Use a prebuilt app
-A prebuilt `.app` is provided in GitHub Releases:
+A prebuilt `.app` is provided in [GitHub Releases](https://github.com/Lindt8/phits-router-macos/releases):
 
 1. Download and unzip `PHITS Router.app`
 2. Move it to `/Applications`
