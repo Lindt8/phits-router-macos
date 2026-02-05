@@ -24,6 +24,9 @@ or via a chooser window listing available destination apps when no modifiers are
 PHITS is a general-purpose Monte Carlo particle simulation code; you can read 
 more about it and how to get it at: https://phits.jaea.go.jp/
 
+See the [PHITS Forum thread on PHITS Router](https://meteor.nucl.kyushu-u.ac.jp/phitsforum/t/topic/4909) 
+for a short simple walkthrough and PHITS community discussion.
+
 ---
 
 ## Supported PHITS applications
