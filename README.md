@@ -16,7 +16,7 @@ file extensions.
 
 ---
 
-## Supported PHITS tools
+## Supported PHITS applications
 
 PHITS Router expects a standard PHITS installation and uses the `PHITSPATH`
 environment variable (with a fallback to `~/phits`).
@@ -56,8 +56,8 @@ Associate PHITS Router with:
 
 Then:
 
-- **Double-click** for the default behavior
-- Hold modifier keys to choose alternate actions
+- **Double-click** for the default behavior (open chooser)
+- Hold modifier keys to choose alternate actions (execute, editor, etc.)
 
 ---
 
@@ -96,20 +96,20 @@ Default selection:
 ### Modifier keys (when opening a file)
 
 #### PHITS input files
-- **Shift** → PHITS-Pad
-- **Command** → PHITS
-- **Option** → PHIG-3D
-- **Control** → preferred text editor
+- **⇧ Shift** → PHITS-Pad
+- **⌘ Command** → PHITS
+- **⌥ Option** → PHIG-3D
+- **⌃ Control** → preferred text editor
 
 #### DCHAIN input files
-- **Shift** → PHITS-Pad
-- **Command** → DCHAIN
-- **Control** → preferred text editor
+- **⇧ Shift** → PHITS-Pad
+- **⌘ Command** → DCHAIN
+- **⌃ Control** → preferred text editor
 
 #### Other text files (including PHITS output)
-- **Shift** → PHITS-Pad
-- **Command** → preferred text editor
-- **Option** → ANGEL
+- **⇧ Shift** → PHITS-Pad
+- **⌘ Command** → preferred text editor
+- **⌥ Option** → ANGEL
 
 ---
 
