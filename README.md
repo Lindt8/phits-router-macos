@@ -16,6 +16,11 @@ a macOS-native equivalent to Windows’ “Send To” workflow using:
 The router works best when set as the default application for PHITS-related
 file extensions.
 
+By associating PHITS-related file extensions (like `.inp` and `.out`) with PHITS Router, 
+one can quickly send a PHITS-related file to a suitable app (of several) 
+directly, selected with the held modifier key when double-clikcing/opening it, 
+or via a chooser window listing available destination apps when no modifiers are held.
+
 PHITS is a general-purpose Monte Carlo particle simulation code; you can read 
 more about it and how to get it at: https://phits.jaea.go.jp/
 
@@ -37,7 +42,7 @@ Expected locations:
 
 ---
 
-## Recommended usage model
+## Recommended usage approach
 
 PHITS Router is designed primarily to be used via **file associations**, not
 Dock drag-and-drop.
