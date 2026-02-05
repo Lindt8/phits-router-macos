@@ -34,7 +34,7 @@ Expected locations:
 
 ---
 
-## Recommended usage model (important)
+## Recommended usage model
 
 PHITS Router is designed primarily to be used via **file associations**, not
 Dock drag-and-drop.
@@ -47,6 +47,8 @@ opened via:
 - right-click → Open With…
 
 Modifier keys are *not* reliable for Dock drag-and-drop on modern macOS.
+
+![PHITS Router "Open With" menu](images/phits_router_open_with_menu.png)
 
 ### Recommended setup
 
@@ -93,9 +95,13 @@ Default selection:
 - Other text files → **preferred editor**
 - `.eps` → EPSPDF (no chooser)
 
+![PHITS Router chooser menu](images/phits_router_chooser.png)
+
 ---
 
 ### Modifier keys (when opening a file)
+
+When a modifier key is held as the file is opened, the file is sent directly to the application corresponding to the combination of the file type (PHITS input, DCHAIN input, other) and the modifier being held down, providing a very quick way to launch the various applications distributed with PHITS along with your text editor of choice.
 
 #### PHITS input files
 - **⇧ Shift** → PHITS-Pad
