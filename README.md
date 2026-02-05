@@ -100,7 +100,7 @@ Detected by content:
 Default selection:
 - PHITS input → **PHITS-Pad**
 - DCHAIN input → **PHITS-Pad**
-- Other text files → **preferred editor**
+- Other text files → **preferred editor** (default CotEditor, fallback to TextEdit)
 - `.eps` → EPSPDF (no chooser)
 
 ![PHITS Router chooser menu](images/phits_router_chooser.png)
@@ -109,23 +109,15 @@ Default selection:
 
 ### Modifier keys (when opening a file)
 
-When a modifier key is held as the file is opened, the file is sent directly to the application corresponding to the combination of the file type (PHITS input, DCHAIN input, other) and the modifier being held down, providing a very quick way to launch the various applications distributed with PHITS along with your text editor of choice.
+When a modifier key is held as the file is opened, the file is sent directly to the application corresponding to the combination of the file type (PHITS input, DCHAIN input, other text files such as PHITS/DCHAIN output) and the modifier being held down, providing a very quick way to launch the various applications distributed with PHITS along with your text editor of choice.  These are mapped as:
 
-#### PHITS input files
-- **⇧ Shift** → PHITS-Pad
-- **⌘ Command** → PHITS
-- **⌥ Option** → PHIG-3D
-- **⌃ Control** → preferred text editor
+| Modifier      | PHITS input           | DCHAIN input | Other text file       |
+|---------------|-----------------------|--------------|-----------------------|
+| **⇧ Shift**   | PHITS-Pad             | PHITS-Pad    | PHITS-Pad             |
+| **⌘ Command** | PHITS                 | DCHAIN       | preferred text editor |
+| **⌥ Option**  | PHIG-3D               | -            | ANGEL                 |
+| **⌃ Control** | preferred text editor | -            | -                     |
 
-#### DCHAIN input files
-- **⇧ Shift** → PHITS-Pad
-- **⌘ Command** → DCHAIN
-- **⌃ Control** → preferred text editor
-
-#### Other text files (including PHITS output)
-- **⇧ Shift** → PHITS-Pad
-- **⌘ Command** → preferred text editor
-- **⌥ Option** → ANGEL
 
 ---
 
