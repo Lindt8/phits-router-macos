@@ -169,7 +169,7 @@ If the preferred editor is not installed, TextEdit is used automatically.
 3. File → Convert To…
 4. Choose **Application**
 5. Save as `PHITS Router.app` (e.g. in `/Applications`)
-6. Optionally assign a [custom icon](images/phits_logoA_1024x1024.png)
+6. Optionally assign a [custom icon](icon_phits_logoA_1024x1024.png)
 7. Associate PHITS file extensions with the app
 
 ### Option B: Use a prebuilt app
