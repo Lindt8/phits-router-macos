@@ -3,6 +3,8 @@
 PHITS Router is a small macOS utility built with Automator that acts as a
 **smart dispatcher** for PHITS-related files.
 
+![PHITS Router on the Dock](images/phits_router_on_dock.png)
+
 It replaces the need to keep multiple PHITS-related apps in the Dock 
 (PHITS, DCHAIN, ANGEL, PHIG-3D, and PHITS-Pad) and provides
 a macOS-native equivalent to Windows’ “Send To” workflow using:
