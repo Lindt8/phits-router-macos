@@ -80,7 +80,7 @@ end run
 -- - Shift: PHITS-Pad (for ANY text-ish file category)
 -- - Command: "primary action" (PHITS or DCHAIN; otherwise editor)
 -- - Option: visualization (PHIG-3D for PHITS input; ANGEL for other text)
--- - Control: editor (for PHITS input and DCHAIN input)
+-- - Control: editor (for PHITS input, DCHAIN input, or any other text-ish file)
 on routeOpen(p, ext, isDchain, isCmd, isOpt, isCtrl, isShift, phitsInputExts, preferredEditorName, fallbackEditorName, appPHITS, appDCHAIN, appANGEL, appPHIG3D, appPHITSPad)
 	set isPhitsInput to (ext is in phitsInputExts) and (not isDchain)
 	
@@ -120,6 +120,8 @@ on routeOpen(p, ext, isDchain, isCmd, isOpt, isCtrl, isShift, phitsInputExts, pr
 	if isShift then
 		my openWithAppPathOrName(p, appPHITSPad, "PhitsPad")
 	else if isCmd then
+		my openWithEditor(p, preferredEditorName, fallbackEditorName)
+	else if isCtrl then
 		my openWithEditor(p, preferredEditorName, fallbackEditorName)
 	else if isOpt then
 		my openWithAppPathOrName(p, appANGEL, "ANGEL")
