@@ -119,7 +119,7 @@ When a modifier key is held as the file is opened, the file is sent directly to 
 | **⇧ Shift**   | PHITS-Pad             | PHITS-Pad    | PHITS-Pad             |
 | **⌘ Command** | PHITS                 | DCHAIN       | preferred text editor |
 | **⌥ Option**  | PHIG-3D               | -            | ANGEL                 |
-| **⌃ Control** | preferred text editor | -            | -                     |
+| **⌃ Control** | preferred text editor | preferred text editor | preferred text editor |
 
 
 ---
