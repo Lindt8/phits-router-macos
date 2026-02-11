@@ -12,10 +12,6 @@ on run {input, parameters}
 	set phitsBase to (do shell script "/bin/sh -lc 'if [ -n \"$PHITSPATH\" ]; then printf %s \"$PHITSPATH\"; else printf %s \"$HOME/phits\"; fi'")
 	
 	-- Program paths (as provided)
-	set appPHITS to phitsBase & "/bin/PHITS.app"
-	set appDCHAIN to phitsBase & "/bin/DCHAIN.app"
-	set appANGEL to phitsBase & "/bin/ANGEL.app"
-	set appPHIG3D to phitsBase & "/bin/PHIG3D_launch.app"
 	set appPHITSPad to phitsBase & "/phitspad/macos/PhitsPad.app"
 	set appEPSPDF to phitsBase & "/bin/EPSPDF.app"
 	
@@ -59,10 +55,10 @@ on run {input, parameters}
 				if noMods then
 					set defaultChoice to my suggestedDefaultFor(p, ext, isDchain, phitsInputExts, preferredEditorName, fallbackEditorName)
 					my dbg(p, ext, textish, isDchain, (ext is in phitsInputExts), isCmd, isOpt, isCtrl, isShift, "No mods -> chooser (default " & defaultChoice & ")")
-					my chooserOpenWithDefault(p, defaultChoice, preferredEditorName, fallbackEditorName, appPHITS, appDCHAIN, appPHIG3D, appPHITSPad, appANGEL, appEPSPDF)
+					my chooserOpenWithDefault(p, defaultChoice, preferredEditorName, fallbackEditorName, appPHITSPad, appEPSPDF)
 				else
 					my dbg(p, ext, textish, isDchain, (ext is in phitsInputExts), isCmd, isOpt, isCtrl, isShift, "Routing (modifiers)")
-					my routeOpen(p, ext, isDchain, isCmd, isOpt, isCtrl, isShift, phitsInputExts, preferredEditorName, fallbackEditorName, appPHITS, appDCHAIN, appANGEL, appPHIG3D, appPHITSPad)
+					my routeOpen(p, ext, isDchain, isCmd, isOpt, isCtrl, isShift, phitsInputExts, preferredEditorName, fallbackEditorName, appPHITSPad)
 				end if
 			end if
 		end if
@@ -81,7 +77,7 @@ end run
 -- - Command: "primary action" (PHITS or DCHAIN; otherwise editor)
 -- - Option: visualization (PHIG-3D for PHITS input; ANGEL for other text)
 -- - Control: editor (for PHITS input, DCHAIN input, or any other text-ish file)
-on routeOpen(p, ext, isDchain, isCmd, isOpt, isCtrl, isShift, phitsInputExts, preferredEditorName, fallbackEditorName, appPHITS, appDCHAIN, appANGEL, appPHIG3D, appPHITSPad)
+on routeOpen(p, ext, isDchain, isCmd, isOpt, isCtrl, isShift, phitsInputExts, preferredEditorName, fallbackEditorName, appPHITSPad)
 	set isPhitsInput to (ext is in phitsInputExts) and (not isDchain)
 	
 	-- PHITS input
@@ -89,9 +85,9 @@ on routeOpen(p, ext, isDchain, isCmd, isOpt, isCtrl, isShift, phitsInputExts, pr
 		if isShift then
 			my openWithAppPathOrName(p, appPHITSPad, "PhitsPad")
 		else if isCmd then
-			my openWithAppPathOrName(p, appPHITS, "PHITS")
+			my runInTerminal(p, "phits.sh")
 		else if isOpt then
-			my openWithAppPathOrName(p, appPHIG3D, "PHIG-3D")
+			my runInTerminal(p, "phig3d.sh")
 		else if isCtrl then
 			my openWithEditor(p, preferredEditorName, fallbackEditorName)
 		else
@@ -106,7 +102,7 @@ on routeOpen(p, ext, isDchain, isCmd, isOpt, isCtrl, isShift, phitsInputExts, pr
 		if isShift then
 			my openWithAppPathOrName(p, appPHITSPad, "PhitsPad")
 		else if isCmd then
-			my openWithAppPathOrName(p, appDCHAIN, "DCHAIN")
+			my runInTerminal(p, "dchain.sh")
 		else if isCtrl then
 			my openWithEditor(p, preferredEditorName, fallbackEditorName)
 		else
@@ -124,7 +120,7 @@ on routeOpen(p, ext, isDchain, isCmd, isOpt, isCtrl, isShift, phitsInputExts, pr
 	else if isCtrl then
 		my openWithEditor(p, preferredEditorName, fallbackEditorName)
 	else if isOpt then
-		my openWithAppPathOrName(p, appANGEL, "ANGEL")
+		my runInTerminal(p, "angel.sh")
 	else
 		-- Shouldn't happen (no-mods handled earlier), but choose editor:
 		my openWithEditor(p, preferredEditorName, fallbackEditorName)
@@ -156,28 +152,28 @@ end suggestedDefaultFor
 -- =========================================
 -- Order requested:
 -- PHITS, DCHAIN, PHIG-3D, PHITS-Pad, CotEditor, TextEdit, ANGEL, EPSPDF
-on chooserOpenWithDefault(p, defaultChoice, preferredEditorName, fallbackEditorName, appPHITS, appDCHAIN, appPHIG3D, appPHITSPad, appANGEL, appEPSPDF)
+on chooserOpenWithDefault(p, defaultChoice, preferredEditorName, fallbackEditorName, appPHITSPad, appEPSPDF)
 	set options to {"PHITS", "DCHAIN", "PHIG-3D", "PHITS-Pad", preferredEditorName, fallbackEditorName, "ANGEL", "EPSPDF"}
 	
 	-- Ensure defaultChoice appears in list; if not, fall back sensibly
 	set defaultItem to defaultChoice
 	if defaultItem is "" then set defaultItem to preferredEditorName
 	
-	set choice to choose from list options with title "Open withâ€¦" with prompt "Choose app for:
+	set choice to choose from list options with title "Open withÉ" with prompt "Choose app for:
 " & p default items {defaultItem}
 	if choice is false then return
 	
 	set picked to item 1 of choice
 	if picked is "PHITS" then
-		my openWithAppPathOrName(p, appPHITS, "PHITS")
+		my runInTerminal(p, "phits.sh")
 	else if picked is "DCHAIN" then
-		my openWithAppPathOrName(p, appDCHAIN, "DCHAIN")
+		my runInTerminal(p, "dchain.sh")
 	else if picked is "PHIG-3D" then
-		my openWithAppPathOrName(p, appPHIG3D, "PHIG-3D")
+		my runInTerminal(p, "phig3d.sh")
 	else if picked is "PHITS-Pad" then
 		my openWithAppPathOrName(p, appPHITSPad, "PhitsPad")
 	else if picked is "ANGEL" then
-		my openWithAppPathOrName(p, appANGEL, "ANGEL")
+		my runInTerminal(p, "angel.sh")
 	else if picked is "EPSPDF" then
 		my openWithAppPathOrName(p, appEPSPDF, "EPSPDF")
 	else if picked is preferredEditorName then
@@ -329,6 +325,38 @@ on currentModifierFlags()
 	return {command:cmdDown, option:optDown, control:ctrlDown, shift:shiftDown}
 end currentModifierFlags
 
+-- =========================================
+-- A common handler that runs shell scripts in the terminal
+-- =========================================
+on runInTerminal(posixPath, shellScriptName)
+	-- Separating the path into folders and filenames
+	set AppleScript's text item delimiters to "/"
+	set FolderPath to (text 1 thru text item -2 of posixPath)
+	set FileName to (text item -1 of posixPath)
+	set AppleScript's text item delimiters to ""
+	
+	-- Terminal operations
+	if application "Terminal" is not running then
+		tell application "Terminal"
+			activate
+			delay 0.5
+		end tell
+	end if
+	
+	tell application "Terminal"
+		activate
+		-- Check the window status and execute
+		if not (exists front window) or busy of front window then
+			set targetTab to do script "clear; echo -e \"\\nNew terminal opened.\\n\""
+		else
+			set targetTab to selected tab of front window
+		end if
+		
+		do script "cd" & space & quoted form of FolderPath in targetTab
+		delay 0.3
+		do script shellScriptName & space & quoted form of FileName in targetTab
+	end tell
+end runInTerminal
 
 -- =========================================
 -- Debug helper (gated)
@@ -342,6 +370,6 @@ Ext: " & ext & "
 Textish: " & textish & "
 DCHAIN: " & isDchain & "
 
-Mods: " & Â¬
+Mods: " & Â
 		"Cmd=" & isCmd & " Opt=" & isOpt & " Ctrl=" & isCtrl & " Shift=" & isShift buttons {"OK"} default button "OK"
 end dbg
