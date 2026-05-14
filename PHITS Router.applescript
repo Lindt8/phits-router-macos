@@ -9,7 +9,7 @@ property debugMode : false
 
 on run {input, parameters}
 	-- Resolve PHITSPATH (fallback to ~/phits)
-	set phitsBase to (do shell script "/bin/sh -lc 'if [ -n \"$PHITSPATH\" ]; then printf %s \"$PHITSPATH\"; else printf %s \"$HOME/phits\"; fi'")
+	set phitsBase to (do shell script "/bin/zsh -lc 'printf %s \"${PHITSPATH:-$HOME/phits}\"'")
 	
 	-- Program paths (as provided)
 	set appPHITSPad to phitsBase & "/phitspad/macos/PhitsPad.app"
@@ -159,8 +159,7 @@ on chooserOpenWithDefault(p, defaultChoice, preferredEditorName, fallbackEditorN
 	set defaultItem to defaultChoice
 	if defaultItem is "" then set defaultItem to preferredEditorName
 	
-	set choice to choose from list options with title "Open withÉ" with prompt "Choose app for:
-" & p default items {defaultItem}
+	set choice to choose from list options with title "Open withâ€¦" with prompt "Choose app for:" & linefeed & p default items {defaultItem}
 	if choice is false then return
 	
 	set picked to item 1 of choice
@@ -370,6 +369,5 @@ Ext: " & ext & "
 Textish: " & textish & "
 DCHAIN: " & isDchain & "
 
-Mods: " & Â
-		"Cmd=" & isCmd & " Opt=" & isOpt & " Ctrl=" & isCtrl & " Shift=" & isShift buttons {"OK"} default button "OK"
+Mods: " & "Cmd=" & isCmd & " Opt=" & isOpt & " Ctrl=" & isCtrl & " Shift=" & isShift buttons {"OK"} default button "OK"
 end dbg
