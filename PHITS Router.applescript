@@ -9,7 +9,7 @@ property debugMode : false
 
 on run {input, parameters}
 	-- Resolve PHITSPATH (fallback to ~/phits)
-	set phitsBase to (do shell script "/bin/sh -lc 'if [ -n \"$PHITSPATH\" ]; then printf %s \"$PHITSPATH\"; else printf %s \"$HOME/phits\"; fi'")
+	set phitsBase to (do shell script "/bin/zsh -lc 'printf %s \"${PHITSPATH:-$HOME/phits}\"'")
 	
 	-- Program paths (as provided)
 	set appPHITSPad to phitsBase & "/phitspad/macos/PhitsPad.app"
